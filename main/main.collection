@@ -40,6 +40,7 @@ embedded_instances {
     z: 1.0
   }
 }
+<<<<<<< HEAD
 embedded_instances {
   id: "Level"
   data: "components {\n"
@@ -77,3 +78,5 @@ embedded_instances {
     z: 1.0
   }
 }
+=======
+>>>>>>> parent of 051757e (Update main.collection)
