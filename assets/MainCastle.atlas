@@ -1,11 +1,15 @@
-images {
-  image: "/assets/Buildings/MainCastle.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
 animations {
-  id: "New Animation"
-  playback: PLAYBACK_LOOP_FORWARD
-  fps: 60
+  id: "Clicked"
+  images {
+    image: "/assets/Buildings/MainCastle.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  images {
+    image: "/assets/Buildings/MainCastleX2.png"
+    sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+  }
+  playback: PLAYBACK_NONE
+  fps: 12
   flip_horizontal: 0
   flip_vertical: 0
 }
