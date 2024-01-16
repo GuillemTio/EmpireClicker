@@ -2582,7 +2582,7 @@ layers {
 }
 layers {
   id: "layer1"
-  z: 1.0
+  z: 2.0
   is_visible: 1
   cell {
     x: 9
