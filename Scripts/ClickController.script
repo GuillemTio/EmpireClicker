@@ -41,7 +41,7 @@ end
 
 function AddCoins()
 	coinsAmount = coinsAmount + coinsOnClick
-	print(coinsAmount)
+	msg.post("main:/HUD#Coins", "updateCoins", {coinsAmount = coinsAmount})
 end
 
 function on_reload(self)
