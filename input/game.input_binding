@@ -1,3 +1,27 @@
+key_trigger {
+  input: KEY_1
+  action: "key1"
+}
+key_trigger {
+  input: KEY_2
+  action: "key2"
+}
+key_trigger {
+  input: KEY_3
+  action: "key3"
+}
+key_trigger {
+  input: KEY_4
+  action: "key4"
+}
+key_trigger {
+  input: KEY_5
+  action: "key5"
+}
+key_trigger {
+  input: KEY_6
+  action: "key6"
+}
 mouse_trigger {
   input: MOUSE_BUTTON_LEFT
   action: "touch"
