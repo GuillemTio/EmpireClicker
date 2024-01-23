@@ -3,6 +3,10 @@ fonts {
   name: "system_font"
   font: "/builtins/fonts/system_font.font"
 }
+fonts {
+  name: "Arco"
+  font: "/assets/Fonts/Arco.font"
+}
 background_color {
   x: 0.0
   y: 0.0
@@ -43,7 +47,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "0"
-  font: "system_font"
+  font: "Arco"
   id: "CoinsNum"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
