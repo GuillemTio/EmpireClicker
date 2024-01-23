@@ -16,7 +16,7 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/assets/Atlas/HouseLvl1.atlas\"\n"
+  data: "tile_set: \"/assets/Atlas/House.atlas\"\n"
   "default_animation: \"house1\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
@@ -33,8 +33,8 @@ embedded_components {
     w: 1.0
   }
   scale {
-    x: 4.0
-    y: 4.0
+    x: 2.0
+    y: 2.0
     z: 1.0
   }
 }

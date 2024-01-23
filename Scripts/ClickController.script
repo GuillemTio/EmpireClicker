@@ -1,5 +1,8 @@
 local coinsAmount = 0
 go.property("coinsOnClick", 1)
+local housesPositions = {vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0),
+vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0)}
+local housePositionIndex = 1;
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -35,20 +38,21 @@ end
 
 function on_input(self, action_id, action)
 	if action_id == hash("touch") and action.pressed then
-		AddCoins(self)
+		AddCoins(self, self.coinsOnClick)
 	end
 	if action_id == hash("key1") and action.pressed then
-		AddAutoClicker()
+		AddAutoClicker(housesPositions[housePositionIndex])
+		housePositionIndex = housePositionIndex + 1
 	end
 end
 
-function AddCoins(self)
-	coinsAmount = coinsAmount + self.coinsOnClick
+function AddCoins(self, coinsAdded)
+	coinsAmount = coinsAmount + coinsAdded
 	msg.post("main:/HUD#Coins", "updateCoins", {coinsAmount = coinsAmount})
 end
 
-function AddAutoClicker()
-	factory.create("#HousesFactory")
+function AddAutoClicker(housePosition)
+	factory.create("/HousesFactory#HousesFactory", housePosition)
 end
 
 function on_reload(self)
