@@ -4,6 +4,10 @@ local housesPositions = {vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0),
 vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0), vmath.vector3(250, 250, 0)}
 local housePositionIndex = 1;
 
+local values = { 0, 0.5, 1, 0.5, 0 }
+local bounce_easing = vmath.vector(values)
+local castleAnimationOngoing = false;
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
@@ -42,6 +46,14 @@ function on_input(self, action_id, action)
 		local mousePosition = vmath.vector3(action.x, action.y, 0)
 		if PointWithinRectangleCentroid(mousePosition.x, mousePosition.y, go.get_world_position("#castle").x, 
 		go.get_world_position("#castle").y, go.get("#castle", "size").x, go.get("#castle", "size").y) then
+
+			if(not castleAnimationOngoing) then
+
+				castleAnimationOngoing = true;
+				go.animate(".", "scale.y", go.PLAYBACK_ONCE_FORWARD, 1.5, bounce_easing, 0.2, 0,function() castleAnimationOngoing = false  end)
+				go.animate(".", "scale.x", go.PLAYBACK_ONCE_FORWARD, 1.5, bounce_easing, 0.2, 0,function() castleAnimationOngoing = false  end)
+			end
+
 			AddCoins(self, self.coinsOnClick)
 		end
 	end
