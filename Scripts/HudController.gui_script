@@ -19,6 +19,13 @@ function on_message(self, message_id, message, sender)
 		local coinsNode = gui.get_node("CoinsNum")
 		gui.set_text(coinsNode, message.coinsAmount)
 	end
+	if message_id == hash("updateHousePie") then
+		local pieNode = gui.get_node("BuyHouse")
+		local piePercentage = (message.coinsAmount / message.housePrice) * 100
+		if piePercentage <= 100 then
+			gui.set_fill_angle(pieNode, (360 * piePercentage) / 100)
+		end
+	end
 end
 
 function on_input(self, action_id, action)
