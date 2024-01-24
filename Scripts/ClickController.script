@@ -1,8 +1,9 @@
 local coinsAmount = 0
 go.property("coinsOnClick", 1)
 go.property("housePrice", 20)
-local housesPositions = {vmath.vector3(250, 500, 0), vmath.vector3(250, 250, 0), vmath.vector3(500, 250, 0),
-vmath.vector3(800, 250, 0), vmath.vector3(1050, 250, 0), vmath.vector3(1050, 500, 0)}
+local housesPositions = {vmath.vector3(250, 500, 0), vmath.vector3(450, 500, 0), vmath.vector3(250, 250, 0), 
+vmath.vector3(450, 250, 0), vmath.vector3(650, 250, 0), vmath.vector3(850, 250, 0), vmath.vector3(850, 500, 0),
+vmath.vector3(1050, 250, 0), vmath.vector3(1050, 500, 0)}
 local housePositionIndex = 1;
 
 local values = { 0, 0.5, 1, 0.5, 0 }
@@ -59,7 +60,7 @@ function on_input(self, action_id, action)
 		end
 	end
 	if action_id == hash("key1") and action.pressed then
-		if coinsAmount >= self.housePrice then
+		if coinsAmount >= self.housePrice and housePositionIndex <= table.maxn(housesPositions) then
 			AddCoins(self, -self.housePrice)
 			self.housePrice = self.housePrice + 10
 			AddAutoClicker(housesPositions[housePositionIndex])
