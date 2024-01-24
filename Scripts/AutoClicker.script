@@ -1,11 +1,12 @@
 go.property("CoinsAdded", 1)
+go.property("SecondsForCoin", 2)
 
 function GenerateCoins(self)
 	msg.post("main:/Castle#ClickController", "addCoins", {coinsAdded = self.CoinsAdded})
 end
 
 function init(self)
-	timer.delay(3, true, GenerateCoins)
+	timer.delay(self.SecondsForCoin, true, GenerateCoins)
 end
 
 function final(self)

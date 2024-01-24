@@ -1,3 +1,4 @@
+local isPieDestroyed = false
 function init(self)
 	--print("My address is:", msg.url())
 end
@@ -15,20 +16,29 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
+
 	if message_id == hash("updateCoins") then
 		local coinsNode = gui.get_node("CoinsNum")
 		gui.set_text(coinsNode, message.coinsAmount)
 	end
-	if message_id == hash("updateHousePie") then
-		local pieNode = gui.get_node("BuyHouse")
-		local piePercentage = (message.coinsAmount / message.housePrice) * 100
-		if piePercentage <= 100 then
+	if not isPieDestroyed then
+		if message_id == hash("updateHousePie") then
+			local pieNode = gui.get_node("BuyHouse")
+			local piePercentage = (message.coinsAmount / message.housePrice) * 100
+			if piePercentage >= 100 then
+				piePercentage = 100
+			end
 			gui.set_fill_angle(pieNode, (360 * piePercentage) / 100)
 		end
-	end
-	if message_id == hash("changePie") then
-		local pieNode = gui.get_node("BuyHouse")
-		gui.set_position(pieNode, message.piePosition)
+		if message_id == hash("changePie") then
+			local pieNode = gui.get_node("BuyHouse")
+			if(message.needsToBeDeleted)then
+				gui.delete_node(pieNode)
+			    isPieDestroyed = true;
+			else
+				gui.set_position(pieNode, message.piePosition)
+			end
+		end
 	end
 end
 
