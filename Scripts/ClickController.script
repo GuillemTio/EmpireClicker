@@ -13,7 +13,7 @@ local castleAnimationOngoing = false;
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
-	msg.post("main:/HUD#Coins", "updateHousePie", {coinsAmount = coinsAmount, housePrice = self.housePrice})
+	msg.post("main:/HUD#Hud", "updateHousePie", {coinsAmount = coinsAmount, housePrice = self.housePrice})
 end
 
 function final(self)
@@ -65,14 +65,15 @@ function on_input(self, action_id, action)
 			self.housePrice = self.housePrice + 10
 			AddAutoClicker(housesPositions[housePositionIndex])
 			housePositionIndex = housePositionIndex + 1
+			msg.post("main:/HUD#Hud", "changePie", {piePosition = housesPositions[housePositionIndex]})
 	end
 	end
 end
 
 function AddCoins(self, coinsAdded)
 	coinsAmount = coinsAmount + coinsAdded
-	msg.post("main:/HUD#Coins", "updateCoins", {coinsAmount = coinsAmount})
-	msg.post("main:/HUD#Coins", "updateHousePie", {coinsAmount = coinsAmount, housePrice = self.housePrice})
+	msg.post("main:/HUD#Hud", "updateCoins", {coinsAmount = coinsAmount})
+	msg.post("main:/HUD#Hud", "updateHousePie", {coinsAmount = coinsAmount, housePrice = self.housePrice})
 end
 
 function AddAutoClicker(housePosition)

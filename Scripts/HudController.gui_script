@@ -26,6 +26,10 @@ function on_message(self, message_id, message, sender)
 			gui.set_fill_angle(pieNode, (360 * piePercentage) / 100)
 		end
 	end
+	if message_id == hash("changePie") then
+		local pieNode = gui.get_node("BuyHouse")
+		gui.set_position(pieNode, message.piePosition)
+	end
 end
 
 function on_input(self, action_id, action)
